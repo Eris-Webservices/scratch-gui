@@ -19,10 +19,7 @@ jobs:
         node-version: 10.x
     - run: npm ci
     - run: npm run build
-    
-    - name: Configure github stuff (Preparing to deploy)
-      run: |
-          git config user.name "Deployment AI"
-          git config user.email "<>"
-    - run: npm run deploy
+    - run: git config --global user.email $(git log --pretty=format:"%ae" -n1)
+    - run: git config --global user.name $(git log --pretty=format:"%an" -n1)
+    - run: npm run deploy -- -e deploy
     
