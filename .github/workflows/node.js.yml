@@ -19,11 +19,9 @@ jobs:
         node-version: 10.x
     - run: npm ci
     - run: npm run build
-    - run: npm run test:unit
     
-    - name: Configure github stuff and deploy!
+    - name: Configure github stuff (Preparing to deploy)
       run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
           git config user.name "Deployment AI"
           git config user.email "<>"
     - run: npm run deploy
