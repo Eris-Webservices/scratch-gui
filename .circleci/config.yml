@@ -59,9 +59,6 @@ jobs:
       - checkout
       - run: npm ci
       - run:
-          name: Lint
-          command: npm run test:lint -- --quiet --output-file test-results/eslint-results.xml --format junit
-      - run:
           name: Unit
           environment:
             JEST_JUNIT_OUTPUT_NAME: unit-results.xml
@@ -73,14 +70,6 @@ jobs:
           command: npm run build
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-      - run:
-          name: Integration
-          environment:
-              JEST_JUNIT_OUTPUT_NAME: integration-results.xml
-          command: |
-              google-chrome --version
-              chromedriver --version
-              npm run test:integration -- --reporters="default" --reporters="jest-junit"
       - store_artifacts:
           path: coverage
       - store_test_results:
