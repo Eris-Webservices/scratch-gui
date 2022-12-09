@@ -1,4 +1,5 @@
 scratch-gui modified for use in [TurboWarp](https://turbowarp.org/)
+modified again by ErisWS to add a service worker (Not done yet!) and putting it on github.io for a friend
 
 ## Setup
 
