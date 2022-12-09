@@ -13,10 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
+    - name: Node.js tests and deployment to gh-pages
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
     - run: npm ci
     - run: npm run build
     - run: npm run test:unit
+    - run: npm run deploy
