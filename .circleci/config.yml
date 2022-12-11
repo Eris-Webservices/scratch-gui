@@ -120,35 +120,9 @@ jobs:
           git config --global user.email $(git log --pretty=format:"%ae" -n1)
           git config --global user.name $(git log --pretty=format:"%an" -n1)
       - run: npm run deploy 
-  push-translations:
-    <<: *defaults
-    steps:
-      - *restore_git_cache
-      - checkout
-      - *restore_npm_cache
-      - run: npm run i18n:src
-      - run: npm run i18n:push
 
 workflows:
   version: 2
-  push-translations:
-    triggers:
-      - schedule:
-          cron: 0 0 * * * # daily at 12 UTC, 8 ET
-          filters:
-            branches:
-              only:
-                - develop
-    jobs:
-      - setup:
-          context:
-            - dockerhub-credentials
-      - push-translations:
-          context:
-            - dockerhub-credentials
-          requires:
-              - setup
-
   build-test-no-deploy:
     jobs:
       - build-test-no-cache:
